@@ -163,8 +163,6 @@ const Register = () => {
     const regExp =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()\-_=+])[A-Za-z\d@$!%*?&#^()\-_=+]{8,}$/;
 
-    console.log(regExp.test(password));
-
     if (!regExp.test(password)) {
       toast.error(
         "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
@@ -172,11 +170,7 @@ const Register = () => {
       return;
     }
 
-    // const validPass = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-    // if (!validPass.test(password)) {
-    //   toast.error("Password must have 1 uppercase, 1 lowercase, and be at least 6 characters long.");
-    //   return;
-    // }
+    
 
     try {
       const result = await createUserWithEmailAndPassword(
@@ -187,8 +181,32 @@ const Register = () => {
       await updateProfile(result.user, { displayName: name, photoURL: photo });
       toast.success("Signup successful ");
       navigate("/");
-    } catch (error) {
-      toast.error(error.message);
+    } catch (e) {
+      
+       if (e.code === "auth/email-already-in-use") {
+        toast.error(
+            "User already exists in the database."
+          );
+        } else if (e.code === "auth/weak-password") {
+          toast.error("Bhai tomake at least 6 ta digit er pass dite hobe");
+        } else if (e.code === "auth/invalid-email") {
+          toast.error("Invalid email format. Please check your email.");
+        } else if (e.code === "auth/user-not-found") {
+          toast.error("User not found. Please sign up first.");
+        } else if (e.code === "auth/wrong-password") {
+          toast.error("Wrong password. Please try again.");
+        } else if (e.code === "auth/user-disabled") {
+          toast.error("This user account has been disabled.");
+        } else if (e.code === "auth/too-many-requests") {
+          toast.error("Too many attempts. Please try again later.");
+        } else if (e.code === "auth/operation-not-allowed") {
+          toast.error("Operation not allowed. Please contact support.");
+        } else if (e.code === "auth/network-request-failed") {
+          toast.error("Network error. Please check your connection.");
+        } else {
+          toast.error(e.message || "An unexpected error occurred.");
+        }
+
     }
   };
 
