@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Hero from '../components/Hero';
 
 const MainLayout = () => {
     return (
@@ -10,6 +11,7 @@ const MainLayout = () => {
                 <Navbar/>
             </header>
            <main className='min-h-screen'>
+            
             <Outlet/>
            </main>
            <footer>
