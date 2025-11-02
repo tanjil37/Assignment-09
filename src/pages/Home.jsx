@@ -4,6 +4,7 @@ import Plants from './Plants';
 import EcoDecorIdeas from '../components/EcoDecorIdeas';
 import GreenExperts from '../components/GreenExperts';
 import PlantCareTips from '../components/PlantCareTips';
+import PlantOfTheWeek from '../components/PlantOfTheWeek';
 
 const Home = () => {
     return (
@@ -21,6 +22,9 @@ const Home = () => {
                 <GreenExperts/>
             </section>
 
+            <section className=''>
+                <PlantOfTheWeek/>
+            </section>
             <section>
                 <EcoDecorIdeas/>
             </section>

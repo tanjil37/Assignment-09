@@ -6,6 +6,8 @@ import Plants from "../pages/Plants";
 import Profile from "../pages/MyProfile";
 import Register from "../pages/Register";
 import PlantsDetails from "../components/PlantsDetails";
+import PrivetRoute from "../privateRoute/PrivateRoute";
+import PlantDetails from "../components/PlantDetails";
 
 export const router = createBrowserRouter([
     {
@@ -22,11 +24,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/plants/:id',
-                Component: PlantsDetails, 
+                element: (
+                    <PrivetRoute>
+                        <PlantDetails/>
+                    </PrivetRoute>
+                ), 
             },
              {
                 path: '/profile',
-                Component: Profile, 
+                element: (
+                    <PrivetRoute>
+                        <Profile/>
+                    </PrivetRoute>
+                ), 
             },
             {
                 path: '/login',

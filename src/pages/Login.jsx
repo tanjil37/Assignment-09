@@ -68,7 +68,9 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-base-200">
       <div className="card bg-base-100 w-full max-w-sm shadow-xl py-5">
-        <h2 className="font-semibold text-2xl text-center">Login your account</h2>
+        <h2 className="font-semibold text-2xl text-center">
+          Login your account
+        </h2>
 
         <form onSubmit={handleLogin} className="card-body">
           {/*  attach ref to input */}
@@ -84,22 +86,24 @@ const Login = () => {
 
           <div className="relative">
             <label className="label">Password</label>
-            <input
-              type={show ? "text" : "password"}
-              name="password"
-              className="input input-bordered w-full"
-              placeholder="••••••••"
-              required
-            />
-            <span
-              onClick={() => setShow(!show)}
-              className="absolute right-3 top-10 cursor-pointer"
-            >
-              {show ? <FaEye size={15} /> : <IoEyeOff size={15} />}
-            </span>
+            <div className="relative">
+              <input
+                type={show ? "text" : "password"}
+                name="password"
+                className="input input-bordered w-full pr-10" // extra padding-right for icon
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShow(!show)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-green-600"
+              >
+                {show ? <FaEye size={18} /> : <IoEyeOff size={18} />}
+              </button>
+            </div>
           </div>
 
-         
           <button
             type="button"
             onClick={handleForgetPassword}

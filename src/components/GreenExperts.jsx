@@ -34,7 +34,7 @@ const GreenExperts = () => {
       <MyContainer className=" mx-auto px-6 text-center">
         {/* Section Title */}
         <h2 className="text-3xl font-bold text-emerald-800 mb-3">
-          Meet Our Green Experts 🌱
+          Meet Our Green Experts 
         </h2>
         <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
           Our passionate team of plant care specialists is here to help you

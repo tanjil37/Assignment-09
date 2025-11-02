@@ -35,7 +35,7 @@ const PlantCareTips = () => {
       <MyContainer className=" mx-auto px-6 text-center">
         {/* Section Header */}
         <h2 className="text-3xl font-bold text-emerald-800 mb-3">
-          Plant Care Tips 🌸
+          Plant Care Tips 
         </h2>
         <p className="text-gray-600 mb-10 max-w-2xl mx-auto">
           Learn how to keep your indoor plants healthy, happy, and thriving with these easy care tips.

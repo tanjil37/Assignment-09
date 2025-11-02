@@ -83,7 +83,7 @@
 //           <fieldset className="fieldset">
 //             {/* Your Name  */}
 //             <label className="label">Your Name</label>
-//             <input type="text" className="input" placeholder="Your Name" name="name" /> 
+//             <input type="text" className="input" placeholder="Your Name" name="name" />
 
 //             {/* Photo URL  */}
 //             <label className="label">Photo URL</label>
@@ -135,10 +135,14 @@
 
 // export default Register;
 
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import { FaEye } from "react-icons/fa6";
 import { IoEyeOff } from "react-icons/io5";
@@ -155,7 +159,6 @@ const Register = () => {
     const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-
 
     const regExp =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()\-_=+])[A-Za-z\d@$!%*?&#^()\-_=+]{8,}$/;
@@ -176,7 +179,11 @@ const Register = () => {
     // }
 
     try {
-      const result = await createUserWithEmailAndPassword(auth, email, password);
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       await updateProfile(result.user, { displayName: name, photoURL: photo });
       toast.success("Signup successful ");
       navigate("/");
@@ -197,30 +204,48 @@ const Register = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-base-200">
       <div className="card bg-base-100 w-full max-w-sm shadow-xl py-5">
-        <h2 className="font-semibold text-2xl text-center">Register your account</h2>
+        <h2 className="font-semibold text-2xl text-center">
+          Register your account
+        </h2>
 
         <form onSubmit={handleRegister} className="card-body">
           <label className="label">Your Name</label>
-          <input type="text" name="name" className="input input-bordered" required />
+          <input
+            type="text"
+            name="name"
+            className="input input-bordered"
+            required
+          />
 
           <label className="label">Photo URL</label>
           <input type="text" name="photo" className="input input-bordered" />
 
           <label className="label">Email</label>
-          <input type="email" name="email" className="input input-bordered" required />
-
+          <input
+            type="email"
+            name="email"
+            className="input input-bordered"
+            required
+          />
+          {/* password */}
           <div className="relative">
             <label className="label">Password</label>
-            <input
-              type={show ? "text" : "password"}
-              name="password"
-              className="input input-bordered w-full"
-              placeholder="••••••••"
-              required
-            />
-            <span onClick={() => setShow(!show)} className="absolute right-3 top-10 cursor-pointer">
-              {show ? <FaEye size={15} /> : <IoEyeOff size={15} />}
-            </span>
+            <div className="relative">
+              <input
+                type={show ? "text" : "password"}
+                name="password"
+                className="input input-bordered w-full pr-10" // extra padding-right for icon
+                placeholder="••••••••"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShow(!show)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-green-600"
+              >
+                {show ? <FaEye size={18} /> : <IoEyeOff size={18} />}
+              </button>
+            </div>
           </div>
 
           <button type="submit" className="btn btn-success mt-4 w-full">
@@ -234,13 +259,19 @@ const Register = () => {
             onClick={handleGoogleSignup}
             className="btn bg-white border border-gray-300 w-full flex items-center justify-center gap-2"
           >
-            <img src="https://cdn-icons-png.flaticon.com/512/281/281764.png" alt="google" className="w-5 h-5" />
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
+              alt="google"
+              className="w-5 h-5"
+            />
             Sign up with Google
           </button>
 
           <p className="text-center font-medium mt-3">
             Already Have An Account?{" "}
-            <Link to="/login" className="text-green-600">Login</Link>
+            <Link to="/login" className="text-green-600">
+              Login
+            </Link>
           </p>
         </form>
       </div>
@@ -249,7 +280,3 @@ const Register = () => {
 };
 
 export default Register;
-
-
-
-
