@@ -149,13 +149,25 @@ const provider = new GoogleAuthProvider();
 const Register = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
-
   const handleRegister = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
+
+
+    const regExp =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()\-_=+])[A-Za-z\d@$!%*?&#^()\-_=+]{8,}$/;
+
+    console.log(regExp.test(password));
+
+    if (!regExp.test(password)) {
+      toast.error(
+        "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+      );
+      return;
+    }
 
     // const validPass = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     // if (!validPass.test(password)) {
@@ -176,7 +188,7 @@ const Register = () => {
   const handleGoogleSignup = () => {
     signInWithPopup(auth, provider)
       .then(() => {
-        toast.success("Google Sign-up successful 🌸");
+        toast.success("Google Sign-up successful");
         navigate("/");
       })
       .catch((e) => toast.error(e.message));
